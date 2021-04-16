@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>Hola mundo</title>
+    </head>
+    <body>
+        HOlas
+    </body>
+<script>
+    /*let oscar = 1
+    console.log(oscar)
+    const gravedad = 9.8;
+    console.log(gravedad)
+    console.log(Boolean(-4))
+    const array = ["azul", "verde", "rojo"]
+    array.forEach((el,index)=>{
+        console.log("<li "+"id = "+index+"> "+el+" </li>")
+    });
+    const objeto = {
+     holas(){
+        console.log("saludame")
+     }
+    }
+    objeto.holas()
+    console.log("8">8)*/
+    const texto = "Hola mundo";
+    
+
+    function contar(t = new String()){
+        console.log(t.length)
+    }
+
+    contar(texto);
+
+    function cortar(t = new String(),caracter = new Number()){
+        console.log(t.substr(0,caracter))
+    }
+
+    cortar(texto,4);
+
+    function separar(t = new String(),caracter = new String()){
+        console.log(t.split(caracter))
+    }
+
+    separar(texto," ");
+
+    function repetir(t = new String(),repetir = new Number()){
+        for (let index = 1; index <= repetir; index++) {
+            console.log(t) 
+        }
+    }
+
+    repetir(texto,5);
+</script>
+</html>
