@@ -4,6 +4,7 @@ Para la realizacion de este problema se uso React y Firebase.
 
 ## instalaciones
 NPM i - Despues de haber clonado el repositorio realizar este comando en la carpeta de origen.
+NPM START - Para realizar deploy de la aplicacion
 
 ## LOGIN 
 
