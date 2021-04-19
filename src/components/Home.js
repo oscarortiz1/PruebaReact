@@ -42,14 +42,30 @@ export const Home = () => {
   }, []);
 
   const submit = async () => {
+    const regexp = /[0-1]/g;
+    const arrayOne = [...scoreSetOne.matchAll(regexp)];
+    const arrayTwo = [...scoreSetTwo.matchAll(regexp)];
+    const arrayThree = [...scoreSetThree.matchAll(regexp)];
+    const arrayFour = [...scoreSetFour.matchAll(regexp)];
+    const arrayFive = [...scoreSetFive.matchAll(regexp)];
+
     if (
       !scoreSetOne ||
       !scoreSetTwo ||
       !scoreSetThree ||
       !scoreSetFour ||
-      !scoreSetFive
+      !scoreSetFive ||
+      arrayOne.length !== scoreSetOne.length ||
+      arrayTwo.length !== scoreSetTwo.length ||
+      arrayThree.length !== scoreSetThree.length ||
+      arrayFour.length !== scoreSetFour.length ||
+      arrayFive.length !== scoreSetFour.length ||
+      image === null ||
+      data.find((competitorRe) => competitorRe.name === competitor)
     ) {
-      setAlert("Ingresar todos los campos");
+      setAlert(
+        "Datos invalidos"
+      );
     } else {
       let score = 0;
       score += scoreSetOne.split("").reduce((prev, curr) => {
@@ -97,6 +113,7 @@ export const Home = () => {
         scoreSetFive,
         score
       );
+
       await handleUpload(image);
 
       setImage(undefined);
@@ -106,6 +123,7 @@ export const Home = () => {
       setscoreSetThree("");
       setscoreSetFour("");
       setscoreSetFive("");
+      setAlert("");
     }
   };
 
@@ -115,7 +133,6 @@ export const Home = () => {
 
   const handleChange = (e) => {
     if (e.target.files[0]) {
-      console.log(e.target.files[0]);
       setImage(e.target.files[0]);
     }
   };
@@ -140,7 +157,9 @@ export const Home = () => {
           placeholder="Agregar Participante"
           id="competitor"
           class="form-control"
-          onChange={(ev) => setCompetitor(ev.target.value)}
+          onChange={(ev) =>
+            setCompetitor(ev.target.value.replace(/[^A-Za-z]/gi, ""))
+          }
           value={competitor}
         />
         <br />
@@ -158,7 +177,7 @@ export const Home = () => {
                 class="form-control"
                 style={{ width: "15em", textAlign: "center" }}
                 onChange={(ev) => setscoreSetOne(ev.target.value)}
-                value={setscoreSetOne}
+                value={scoreSetOne}
               />
             </td>
             <td>
